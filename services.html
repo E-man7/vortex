@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techfinity - Services</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #f72585;
+            --dark: #14213d;
+            --light: #f8f9fa;
+            --accent: #4cc9f0;
+            --gray: #adb5bd;
+            --success: #38b000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--dark);
+            padding: 15px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Company Info */
+        .company-info {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Services Section */
+        #services {
+            padding: 5rem 0;
+        }
+        
+        .service-card {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .service-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgba(67, 97, 238, 0.15);
+            margin-right: 2rem;
+            min-width: 80px;
+            line-height: 1;
+        }
+        
+        .service-content h2 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .service-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark), #000);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+        
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 4rem 0;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .service-card {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            
+            .service-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                font-size: 3rem;
+            }
+            
+            .service-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="innovations.html">Innovations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive technology solutions tailored to your business needs</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="services">
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <div class="service-content">
+                    <h2>Custom Software Development</h2>
+                    <p>We specialize in creating bespoke software applications for specific business and institutional needs. From high-performance web platforms to high-capacity mobile apps, our solutions are built to deliver speed, security, and intuitive user experiences—designed from front-end to back-end.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Web Development</span>
+                        <span class="feature-tag">Mobile Apps</span>
+                        <span class="feature-tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <div class="service-content">
+                    <h2>SaaS Solutions</h2>
+                    <p>We design SaaS (Software-as-a-Service) platforms that automate processes, boost productivity, and simplify management. From a school administration system to a slot-machine integration system or a retail platform, our SaaS solutions are scalable and designed to grow with your business.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Education</span>
+                        <span class="feature-tag">Casino Management</span>
+                        <span class="feature-tag">Retail Systems</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <div class="service-content">
+                    <h2>Cybersecurity Services</h2>
+                    <p>We offer cutting-edge security solutions to protect systems, networks, and data from cyber threats. Our offerings span vulnerability assessment, ethical hacking, and penetration testing to compliance auditing—keeping your digital infrastructure secure, compliant, and resilient.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Penetration Testing</span>
+                        <span class="feature-tag">Vulnerability Assessment</span>
+                        <span class="feature-tag">Compliance Auditing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="innovations.html">Innovations</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2025 Techfinity | A Vortex Inc. Company</p>
+        </div>
+    </footer>
+</body>
+</html>
