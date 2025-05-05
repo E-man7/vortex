@@ -181,12 +181,57 @@
     nav a:hover {
         background-color: var(--primary);
     }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+        display: none;
+        background-color: var(--dark);
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .menu-toggle:focus {
+        outline: none;
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;
+            flex-direction: column;
+            background-color: var(--dark);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        nav ul.active {
+            display: flex;
+        }
+
+        nav li {
+            margin: 10px 0;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+    }
   </style>
 </head>
 <body>
 
     <!-- Update the navigation in all files -->
   <nav>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -247,6 +292,14 @@
       </div>
     </section>
   </main>
+
+  <!-- Add this script at the bottom of the <body> -->
+  <script>
+    function toggleMenu() {
+        const navMenu = document.querySelector('nav ul');
+        navMenu.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
