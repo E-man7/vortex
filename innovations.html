@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
     <title>Techfinity - L.Track Education Solution</title>
     <style>
         :root {
@@ -70,9 +70,54 @@
             transform: translateY(-2px);
         }
         
+        /* Mobile Navigation */
+        .menu-toggle {
+            display: none;
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .menu-toggle:focus {
+            outline: none;
+        }
+
+        nav ul {
+            flex-direction: row;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: var(--dark);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+        
         /* Header */
         .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('assets/logo13.jpeg') no-repeat center center/cover;
             color: white;
             padding: 8rem 0;
             text-align: center;
@@ -105,20 +150,17 @@
         /* Hero CTA */
         .hero-cta {
             display: inline-block;
-            background-color: var(--accent);
+            background-color: var(--primary);
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            margin-top: 2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(76, 201, 240, 0.4);
+            font-weight: 500;
+            transition: background-color 0.3s ease;
         }
         
         .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(76, 201, 240, 0.6);
+            background-color: var(--accent);
         }
         
         /* Sections */
@@ -271,8 +313,8 @@
             background-position: center;
         }
         
-        /* Stats Section */
-        .stats {
+       /* Stats Section */
+       .stats {
             background-color: var(--light);
             padding: 4rem 0;
         }
@@ -428,6 +470,22 @@
                 margin: 0.5rem 0;
             }
         }
+        
+        .app-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-image img {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .app-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -435,6 +493,7 @@
 <body>
     <!-- Navigation -->
     <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
@@ -518,6 +577,24 @@
             </div>
         </section>
         
+        <!-- App Showcase Section -->
+        <section id="app-showcase">
+            <h2>Explore the L.Track App</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                Take a closer look at the intuitive and user-friendly interface of the L.Track app, designed to simplify education management for everyone.
+            </p>
+            <div class="app-showcase-grid">
+                <div class="app-image">
+                    <img src="assets/i1.png" alt="App Feature 1" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; margin-top: 1rem;">Feature 1</p>
+                </div>
+                <div class="app-image">
+                    <img src="assets/fdf.png" alt="App Feature 2" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; margin-top: 1rem;">Feature 2</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Benefits Section -->
         <section id="benefits">
             <h2>Why Choose L.Track?</h2>
@@ -610,7 +687,10 @@
                 </div>
             </div>
         </section>
-        
+
+        <!-- Divider -->
+        <div style="height: 2rem; background-color: var(--light); margin: 2rem 0; border-top: 2px solid var(--gray);"></div>
+
         <!-- Demo CTA -->
         <section class="cta-section" id="demo">
             <h2>Ready to Transform Your School?</h2>
@@ -640,5 +720,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Add this script at the bottom of the <body> -->
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('nav ul');
+            navMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

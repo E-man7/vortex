@@ -39,6 +39,10 @@
         nav {
             background-color: var(--dark);
             padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         nav ul {
@@ -59,11 +63,75 @@
             font-weight: 500;
             padding: 5px 10px;
             border-radius: 4px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            position: relative;
         }
         
         nav a:hover {
             background-color: var(--primary);
+        }
+        
+        nav a.active {
+            background-color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Navigation */
+        .menu-toggle {
+            display: none;
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+        
+        .menu-toggle:focus {
+            outline: none;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: var(--dark);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 10px 0;
+                z-index: 99;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+                text-align: center;
+            }
         }
         
         /* Header */
@@ -73,6 +141,7 @@
             padding: 6rem 0;
             text-align: center;
             position: relative;
+            margin-bottom: 3rem;
         }
         
         .header h1 {
@@ -80,6 +149,7 @@
             margin-bottom: 1rem;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
         }
         
         .header p {
@@ -87,6 +157,7 @@
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.9;
+            animation: fadeInUp 1s ease;
         }
         
         /* Company Info */
@@ -102,6 +173,37 @@
         /* Services Section */
         #services {
             padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .service-card {
@@ -165,6 +267,70 @@
             font-size: 1.05rem;
         }
         
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-tag {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .feature-tag:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            border-radius: 12px;
+            margin: 5rem 0;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.2);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background-color: var(--light);
+        }
+        
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--dark), #000);
@@ -179,25 +345,114 @@
             align-items: center;
         }
         
-        .footer-links {
+        .footer-content {
             display: flex;
-            gap: 2rem;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: white;
+            color: var(--gray);
             text-decoration: none;
             transition: color 0.3s;
+            display: inline-block;
         }
         
         .footer-links a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
         
-        .footer p {
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+        
+        .footer-bottom p {
             opacity: 0.8;
             font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive */
@@ -210,10 +465,8 @@
                 font-size: 2.5rem;
             }
             
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
+            .section-title h2 {
+                font-size: 2rem;
             }
             
             .service-card {
@@ -230,19 +483,72 @@
             .service-content h2 {
                 font-size: 1.5rem;
             }
+            
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-column {
+                min-width: 150px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            function toggleMenu() {
+                const menu = document.querySelector('nav ul');
+                menu.classList.toggle('active');
+            }
+            
+            document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+            
+            // Highlight current page in navigation
+            const currentPage = location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Animate service cards on scroll
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
+        <button class="menu-toggle" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="innovations.html">Innovations</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </nav>
 
@@ -250,21 +556,27 @@
     <header class="header">
         <div class="container">
             <h1>Our Services</h1>
-            <p>Comprehensive technology solutions tailored to your business needs</p>
+            <p>Comprehensive technology solutions tailored to your business needs. We deliver innovation, security, and efficiency through cutting-edge digital services.</p>
         </div>
     </header>
     
     <main class="container">
         <section id="services">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+                <p>From custom software development to comprehensive cybersecurity solutions, we provide the tools and expertise to transform your business in the digital age.</p>
+            </div>
+            
             <div class="service-card">
                 <div class="service-number">01</div>
                 <div class="service-content">
                     <h2>Custom Software Development</h2>
                     <p>We specialize in creating bespoke software applications for specific business and institutional needs. From high-performance web platforms to high-capacity mobile apps, our solutions are built to deliver speed, security, and intuitive user experiences—designed from front-end to back-end.</p>
                     <div class="service-features">
-                        <span class="feature-tag">Web Development</span>
-                        <span class="feature-tag">Mobile Apps</span>
-                        <span class="feature-tag">UI/UX Design</span>
+                        <span class="feature-tag"><i class="fas fa-globe"></i> Web Development</span>
+                        <span class="feature-tag"><i class="fas fa-mobile-alt"></i> Mobile Apps</span>
+                        <span class="feature-tag"><i class="fas fa-paint-brush"></i> UI/UX Design</span>
+                        <span class="feature-tag"><i class="fas fa-server"></i> Backend Systems</span>
                     </div>
                 </div>
             </div>
@@ -275,9 +587,10 @@
                     <h2>SaaS Solutions</h2>
                     <p>We design SaaS (Software-as-a-Service) platforms that automate processes, boost productivity, and simplify management. From a school administration system to a slot-machine integration system or a retail platform, our SaaS solutions are scalable and designed to grow with your business.</p>
                     <div class="service-features">
-                        <span class="feature-tag">Education</span>
-                        <span class="feature-tag">Casino Management</span>
-                        <span class="feature-tag">Retail Systems</span>
+                        <span class="feature-tag"><i class="fas fa-graduation-cap"></i> Education</span>
+                        <span class="feature-tag"><i class="fas fa-gamepad"></i> Casino Management</span>
+                        <span class="feature-tag"><i class="fas fa-shopping-cart"></i> Retail Systems</span>
+                        <span class="feature-tag"><i class="fas fa-chart-line"></i> Analytics</span>
                     </div>
                 </div>
             </div>
@@ -288,24 +601,79 @@
                     <h2>Cybersecurity Services</h2>
                     <p>We offer cutting-edge security solutions to protect systems, networks, and data from cyber threats. Our offerings span vulnerability assessment, ethical hacking, and penetration testing to compliance auditing—keeping your digital infrastructure secure, compliant, and resilient.</p>
                     <div class="service-features">
-                        <span class="feature-tag">Penetration Testing</span>
-                        <span class="feature-tag">Vulnerability Assessment</span>
-                        <span class="feature-tag">Compliance Auditing</span>
+                        <span class="feature-tag"><i class="fas fa-shield-alt"></i> Penetration Testing</span>
+                        <span class="feature-tag"><i class="fas fa-search"></i> Vulnerability Assessment</span>
+                        <span class="feature-tag"><i class="fas fa-file-contract"></i> Compliance Auditing</span>
+                        <span class="feature-tag"><i class="fas fa-lock"></i> Security Training</span>
                     </div>
                 </div>
             </div>
+            
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <div class="service-content">
+                    <h2>Cloud Solutions & DevOps</h2>
+                    <p>Our cloud experts help businesses migrate to and optimize cloud environments while implementing DevOps practices for continuous integration and delivery. We ensure your infrastructure is scalable, reliable, and cost-effective.</p>
+                    <div class="service-features">
+                        <span class="feature-tag"><i class="fas fa-cloud"></i> Cloud Migration</span>
+                        <span class="feature-tag"><i class="fas fa-cogs"></i> DevOps Implementation</span>
+                        <span class="feature-tag"><i class="fas fa-infinity"></i> CI/CD Pipelines</span>
+                        <span class="feature-tag"><i class="fas fa-tachometer-alt"></i> Performance Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Our team of experts is ready to discuss your project and provide a customized solution that meets your specific needs.</p>
+            <a href="contact.html" class="cta-button">Get in Touch <i class="fas fa-arrow-right"></i></a>
         </section>
     </main>
     
     <footer class="footer">
         <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="innovations.html">Innovations</a>
-                <a href="contact.html">Contact</a>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Techfinity</h3>
+                    <p>Innovative technology solutions for the digital age. We help businesses transform through cutting-edge software and security services.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="innovations.html"><i class="fas fa-chevron-right"></i> Innovations</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Software Development</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> SaaS Solutions</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cybersecurity</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@techfinity.com</li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2025 Techfinity | A Vortex Inc. Company</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Techfinity | A Vortex Inc. Company. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 </body>
