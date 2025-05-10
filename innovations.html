@@ -471,20 +471,170 @@
             }
         }
         
+        /* App Showcase Section */
+        .app-showcase {
+            background-color: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-top: 3rem;
+        }
+
+        .app-showcase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .app-showcase-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .app-showcase-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .app-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .app-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 450px;
+        }
+
+        .app-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .app-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        .app-image-overlay h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-image-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        /* App Badges */
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--dark);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .app-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .app-badge i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .app-badge.app-store {
+            background: #000;
+        }
+
+        .app-badge.play-store {
+            background: #000;
+        }
+
+        .app-badge.web-portal {
+            background: var(--primary);
+        }
+
+        /* App Features Section */
+        .app-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .app-image img {
-            transition: transform 0.3s, box-shadow 0.3s;
+        .app-feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
-        .app-image img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        .app-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .app-feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .app-feature-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .app-feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -579,18 +729,77 @@
         
         <!-- App Showcase Section -->
         <section id="app-showcase">
-            <h2>Explore the L.Track App</h2>
+            <h2>Explore the L.Track Experience</h2>
             <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
-                Take a closer look at the intuitive and user-friendly interface of the L.Track app, designed to simplify education management for everyone.
+                Discover the intuitive and powerful interface of L.Track, designed to simplify education management for administrators, teachers, students, and parents.
             </p>
-            <div class="app-showcase-grid">
-                <div class="app-image">
-                    <img src="assets/i1.png" alt="App Feature 1" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <p style="text-align: center; margin-top: 1rem;">Feature 1</p>
+            
+            <div class="app-showcase">
+                <div class="app-showcase-header">
+                    <h3>Mobile & Web Interface</h3>
+                    <p>Access all features seamlessly across devices with our responsive design and dedicated mobile apps</p>
                 </div>
-                <div class="app-image">
-                    <img src="assets/fdf.png" alt="App Feature 2" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <p style="text-align: center; margin-top: 1rem;">Feature 2</p>
+                
+                <div class="app-showcase-grid">
+                    <div class="app-image">
+                        <img src="assets/i1.png" alt="Admin Dashboard">
+                        <div class="app-image-overlay">
+                            <h4>Admin Dashboard</h4>
+                            <p>Comprehensive overview of school operations and analytics</p>
+                        </div>
+                    </div>
+                    <div class="app-image">
+                        <img src="assets/fdf.png" alt="Teacher Portal">
+                        <div class="app-image-overlay">
+                            <h4>Teacher Portal</h4>
+                            <p>Lesson planning, grading, and communication tools</p>
+                        </div>
+                    </div>
+                    <div class="app-image">
+                        <img src="assets/m22.jpg" alt="Parent App">
+                        <div class="app-image-overlay">
+                            <h4>Parent App</h4>
+                            <p>Real-time updates on student progress and school events</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App Features -->
+                <div class="app-features">
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Real-time Sync</h4>
+                        <p>All data updates instantly across all devices and platforms</p>
+                    </div>
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Enterprise Security</h4>
+                        <p>Bank-level encryption and secure cloud infrastructure</p>
+                    </div>
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h4>Smart Notifications</h4>
+                        <p>Customizable alerts for important updates and deadlines</p>
+                    </div>
+                </div>
+                
+                <!-- App Store Badges -->
+                <div class="app-badges">
+                    <a href="#" class="app-badge app-store">
+                        <i class="fab fa-apple"></i> App Store
+                    </a>
+                    <a href="#" class="app-badge play-store">
+                        <i class="fab fa-google-play"></i> Google Play
+                    </a>
+                    <a href="#" class="app-badge web-portal">
+                        <i class="fas fa-globe"></i> Web Portal
+                    </a>
                 </div>
             </div>
         </section>
@@ -716,12 +925,11 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="copyright">
-                &copy; 2025 vortex | A Vortex Inc. Company. All rights reserved.
+                &copy; 2025 Techfinity | A Vortex Inc. Company. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Add this script at the bottom of the <body> -->
     <script>
         function toggleMenu() {
             const navMenu = document.querySelector('nav ul');
